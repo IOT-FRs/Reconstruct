@@ -5,9 +5,7 @@ import databean.Vehicle;
 import process.multiObject.SetDataMap;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 public class GeneticAlgorithm {
@@ -107,6 +105,21 @@ public class GeneticAlgorithm {
     public int[] getChromosomeFromVehicleList(List<Vehicle> vehicleList){
         int index=0;
         List<Integer> integerList=new ArrayList<>();
+//        Map<String,Integer> vehicleTypeVehicleMap=new TreeMap<>();
+//        List<Vehicle> tmpVehicleList=new ArrayList<>();
+//        for (Vehicle vehicle:vehicleList) {
+//            vehicleTypeVehicleMap.merge(vehicle.vehicleDetailedType, 1, Integer::sum);
+//        }
+//        for (String key:vehicleTypeVehicleMap.keySet()) {
+//            for (Vehicle vehicle:vehicleList) {
+//                if(vehicle.vehicleDetailedType.equals(key)){
+//                    tmpVehicleList.add(vehicle);
+//                }
+//            }
+//        }
+//        for (Vehicle v:tmpVehicleList) {
+//            integerList.addAll(v.chromosome);
+//        }
         for (Vehicle v:vehicleList) {
             integerList.addAll(v.chromosome);
         }
@@ -130,10 +143,12 @@ public class GeneticAlgorithm {
 //            long startTime=System.currentTimeMillis();
             populationFitness += this.calcFitness(individual, orderList,setDataMap);
 //            reconstructChromosome(individual);
-            reconstructChromosome(individual,orderList,setDataMap);
+            if(individualIndex<this.elitismCount){
+                reconstructChromosome(individual,orderList,setDataMap);
+            }
+//            reconstructChromosome(individual,orderList,setDataMap);
 
             individualIndex++;
-//            calcFitness(individual, orderList,setDataMap);
         }
 
         population.setPopulationFitness(populationFitness);

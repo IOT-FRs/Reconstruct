@@ -14,7 +14,7 @@ import java.util.*;
 
 public class Simulation {
     int populationSize = 200; // Population size for each generation
-    int maxGenerations = 100; // Number of generations to simulate for
+    int maxGenerations = 50; // Number of generations to simulate for
 
     private double crossoverProbability = 0.9;
     private double mutationProbability = 0.01;
